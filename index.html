@@ -12,11 +12,11 @@
       width: 100%;
     }
 
-    #map-container {
-      width: 100%;
-      height: 100%;
+    .map-container {
       position: relative;
-      overflow: hidden;
+      width: 100%;
+      max-width: 800 px;
+      margin: 0 auto ;
     }
 
     svg {
@@ -55,16 +55,20 @@
       color: #ffcc00;
     }
     
-    .info-box {
-    background: #fff8ef;
-    border: 2px solid #ffa726;
+ .info-box {
+    position: absolute; /* กำหนดตำแหน่งแบบสัมบูรณ์ */
+    bottom: 0; /* ชิดด้านล่าง */
+    left: 50%; /* จัดกึ่งกลางแนวนอน */
+    transform: translateX(-50%); /* ปรับเพื่อกึ่งกลางพอดี */
+    background-color: rgba(255, 255, 255, 0.8); /* สีพื้นหลังและค่าความโปร่งใส */
+    padding: 10px;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    padding: 3px;
-    font-family: "Kanit", sans-serif;
-    box-shadow: 0 4px 12px rgba(255, 167, 38, 0.2);
-    box-sizing: border-box;
-    max-width: 100%;
-  }
+    text-align: center;
+    z-index: 1; /* กำหนดให้แสดงอยู่ด้านล่าง SVG */
+    width: 90%; /* ปรับความกว้างตามต้องการ */
+    box-sizing: border-box; /* รวม padding และ border ในขนาด width */
+}
 
 .info-box h2 {
   color: #fb8c00;
@@ -90,14 +94,20 @@
   color: #ef6c00;
 }
 
+#map-svg {
+    position: relative; /* เพื่อให้สามารถกำหนด z-index ได้ */
+    z-index: 2; /* กำหนดให้มีค่า z-index สูงกว่า info-box */
+    display: block; /* แก้ปัญหาการแสดงผลในบาง layout */
+    margin: 0 auto; /* จัดกึ่งกลาง SVG ถ้าต้องการ */
+    width: 100%; /* ปรับขนาด SVG ตาม container */
+    height: auto; /* รักษาอัตราส่วนภาพ */
+}
     @media (max-width: 768px) {
-      .info-box-wrapper {
-        top: 10px;
-        left: 10px;
-        padding: 10px;
-        font-size: 14px;
-      }
+    .info-box {
+        display: none;
     }
+}
+
   </style>
 </head>
 <body>
@@ -114,7 +124,7 @@
     </div>
 
     <?xml version="1.0" encoding="UTF-8"?>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560" width="100%" height="auto" preserveAspectRatio="xMidYMid meet">
+    <svg id="map-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560" width="100%" height="auto" preserveAspectRatio="xMidYMid meet">
       <defs>
         <style>
           .cls-1 {
