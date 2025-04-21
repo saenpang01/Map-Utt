@@ -1,130 +1,6 @@
-<!DOCTYPE html>
-<html lang="th">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Map Responsive</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      width: 100%;
-    }
-
-    .map-container {
-      position: relative;
-      width: 100%;
-      max-width: 800 px;
-      margin: 0 auto ;
-    }
-
-    svg {
-      width: 100%;
-      height: auto;
-    }
-
-    svg path {
-    transition: 0.3s;
-    cursor: pointer;
-    }
-
-    svg path:hover {
-    fill: #ff9900;
-    }
-
-    .info-box-wrapper {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      background: none;
-      color: #fff;
-      padding: 7px 9 px;
-      border-radius: 10px;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.2) ;
-      max-width: 90%;
-      z-index: 10;
-      transition: all 0.3s ease;
-    }
-    .info-box-wrapper:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-    }
-
-    .info-box-wrapper strong {
-      color: #ffcc00;
-    }
-    
- .info-box {
-    position: absolute; /* กำหนดตำแหน่งแบบสัมบูรณ์ */
-    bottom: 0; /* ชิดด้านล่าง */
-    left: 50%; /* จัดกึ่งกลางแนวนอน */
-    transform: translateX(-50%); /* ปรับเพื่อกึ่งกลางพอดี */
-    background-color: rgba(255, 255, 255, 0.8); /* สีพื้นหลังและค่าความโปร่งใส */
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    text-align: center;
-    z-index: 1; /* กำหนดให้แสดงอยู่ด้านล่าง SVG */
-    width: 90%; /* ปรับความกว้างตามต้องการ */
-    box-sizing: border-box; /* รวม padding และ border ในขนาด width */
-}
-
-.info-box h2 {
-  color: #fb8c00;
-  border-bottom: 2px solid #fb8c00;
-  padding-bottom: 4px;
-  margin-bottom: 5px;
-  font-size: 0.8em;
-}
-
-.info-box table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.info-box td {
-  padding: 6px 2px;
-  font-size: 0.6em;
-  color: #424242;
-}
-
-.info-box td:first-child {
-  font-weight: bold;
-  color: #ef6c00;
-}
-
-#map-svg {
-    position: relative; /* เพื่อให้สามารถกำหนด z-index ได้ */
-    z-index: 2; /* กำหนดให้มีค่า z-index สูงกว่า info-box */
-    display: block; /* แก้ปัญหาการแสดงผลในบาง layout */
-    margin: 0 auto; /* จัดกึ่งกลาง SVG ถ้าต้องการ */
-    width: 100%; /* ปรับขนาด SVG ตาม container */
-    height: auto; /* รักษาอัตราส่วนภาพ */
-}
-    @media (max-width: 768px) {
-    .info-box {
-        display: none;
-    }
-}
-
-  </style>
-</head>
-<body>
-  <div id="map-container">
-    <div class="info-box-wrapper">
-      <div class="info-box">
-        <h2 id="zone-name">ข้อมูลรวมทั้งจังหวัด</h2>
-        <table>
-          <tr><td>👥 ประชากร</td><td><span id="pop">-</span></td></tr>
-          <tr><td>🧑‍🤝‍🧑 สมาชิกพรรค</td><td><span id="members">-</span></td></tr>
-          <tr><td>📏 พื้นที่</td><td><span id="area">-</span> ตร.กม.</td></tr>
-        </table>
-      </div>
-    </div>
-
+<div id="map-container" style="position: relative;">
     <?xml version="1.0" encoding="UTF-8"?>
-    <svg id="map-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560" width="100%" height="auto" preserveAspectRatio="xMidYMid meet">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560" width="100%" height="auto" preserveAspectRatio="xMidYMid meet">
       <defs>
         <style>
           .cls-1 {
@@ -158,7 +34,6 @@
             letter-spacing: -.02em;
           }
         </style>
-        
 
       </defs>
       <g id="Layer_1" data-name="Layer 1">
@@ -201,58 +76,143 @@
         <text class="cls-2" transform="translate(232.67 368.58) scale(1.2 .94) skewX(-15.61)"><tspan x="0" y="0">อ.ตรอน</tspan></text>
       </g>
     </svg>
-    
+  <!-- 🔸 ข้อมูลด้านข้าง -->
+  <div class="info-box-wrapper">
+    <div class="info-box">
+      <h2 id="zone-name">ข้อมูลรวมทั้งจังหวัด</h2>
+      <table>
+      <tr>
+        <td>👥 ประชากร</td>
+        <td><span id="pop">-</span></td>
+      </tr>
+      <tr>
+        <td>🧑‍🤝‍🧑 สมาชิกพรรค</td>
+        <td><span id="members">-</span></td>
+      </tr>
+      <tr>
+        <td>📏 พื้นที่</td>
+        <td><span id="area">-</span> ตร.กม.</td>
+      </tr>
+      </table>
+    </div>
   </div>
-</body>
+<style>
+svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+  svg path {
+    transition: 0.3s;
+    cursor: pointer;
+  }
+  svg path:hover {
+    fill: #ff9900;
+  }
+  #map-container {
+    display: grid;
+    grid-template-columns: 7fr 3fr;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  svg, object {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .info-box {
+    background: #fff8ef;
+    border: 2px solid #ffa726;
+    border-radius: 12px;
+    padding: 16px;
+    font-family: "Kanit", sans-serif;
+    box-shadow: 0 4px 12px rgba(255, 167, 38, 0.2);
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+.info-box h2 {
+  color: #fb8c00;
+  border-bottom: 2px solid #fb8c00;
+  padding-bottom: 4px;
+  margin-bottom: 12px;
+  font-size: 1.3em;
+}
+
+.info-box table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.info-box td {
+  padding: 8px 4px;
+  font-size: 1em;
+  color: #424242;
+}
+
+.info-box td:first-child {
+  font-weight: bold;
+  color: #ef6c00;
+}
+
+
+@media screen and (max-width: 768px) {
+  #map-container {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+
 <script>
-    const sheetID = "1OxE4XdiUGttHMMEMQF-DOwTb-IcQrGFtPgzys2NliGQ"; 
-    const sheetName = "ชีต1";
-    const url = `https://opensheet.elk.sh/${sheetID}/${sheetName}`;
-    let allData = [];
-  
-    fetch(url)
-      .then(res => res.json())
-      .then(data => {
-        allData = data;
-        showProvinceData();
-  
-        const svgDoc = document.querySelector("svg"); //  ใช้ inline svg
-  
-        data.forEach(row => {
-          const zoneId = row.เขต; //  เช่น "zone1", "zone2"
-          const zoneEl = svgDoc.getElementById(zoneId);
-  
-          if (zoneEl && row.ลิงก์) {
-            zoneEl.style.cursor = "pointer";
-            zoneEl.addEventListener("mouseenter", () => showZoneData(row));
-            zoneEl.addEventListener("mouseleave", showProvinceData);
-            zoneEl.addEventListener("click", ()=> {
-            window.open(row.ลิงก์, "_blank");
-            });
-          } 
-          else {
-            console.warn("ไม่พบ element สำหรับ:", zoneId);
-          }
-        });
+  const sheetID = "1OxE4XdiUGttHMMEMQF-DOwTb-IcQrGFtPgzys2NliGQ"; 
+  const sheetName = "ชีต1";
+  const url = `https://opensheet.elk.sh/${sheetID}/${sheetName}`;
+  let allData = [];
+
+  fetch(url)
+    .then(res => res.json())
+    .then(data => {
+      allData = data;
+      showProvinceData();
+
+      const svgDoc = document.querySelector("svg"); //  ใช้ inline svg
+
+      data.forEach(row => {
+        const zoneId = row.เขต; //  เช่น "zone1", "zone2"
+        const zoneEl = svgDoc.getElementById(zoneId);
+
+        if (zoneEl && row.ลิงก์) {
+          zoneEl.style.cursor = "pointer";
+          zoneEl.addEventListener("mouseenter", () => showZoneData(row));
+          zoneEl.addEventListener("mouseleave", showProvinceData);
+          zoneEl.addEventListener("click", ()=> {
+          window.open(row.ลิงก์, "_blank");
+          });
+        } 
+        else {
+          console.warn("ไม่พบ element สำหรับ:", zoneId);
+        }
       });
-  
-    function showZoneData(data) {
-  
-      document.getElementById("zone-name").textContent = `ข้อมูลเขต: ${data.เขต}`;
-      document.getElementById("pop").textContent = data.ประชากร;
-      document.getElementById("members").textContent = data.สมาชิกพรรค;
-      document.getElementById("area").textContent = data.พื้นที่;
-    }
-  
-    function showProvinceData() {
-      const totalPop = allData.reduce((sum, d) => sum + parseInt(d.ประชากร), 0);
-      const totalMem = allData.reduce((sum, d) => sum + parseInt(d.สมาชิกพรรค), 0);
-      const totalArea = allData.reduce((sum, d) => sum + parseFloat(d.พื้นที่), 0);
-  
-      document.getElementById("zone-name").textContent = "ข้อมูลรวมทั้งจังหวัด";
-      document.getElementById("pop").textContent = totalPop.toLocaleString();
-      document.getElementById("members").textContent = totalMem.toLocaleString();
-      document.getElementById("area").textContent = totalArea.toFixed(2);
-    }
-  </script>
-</html>
+    });
+
+  function showZoneData(data) {
+
+    document.getElementById("zone-name").textContent = `ข้อมูลเขต: ${data.เขต}`;
+    document.getElementById("pop").textContent = data.ประชากร;
+    document.getElementById("members").textContent = data.สมาชิกพรรค;
+    document.getElementById("area").textContent = data.พื้นที่;
+  }
+
+  function showProvinceData() {
+    const totalPop = allData.reduce((sum, d) => sum + parseInt(d.ประชากร), 0);
+    const totalMem = allData.reduce((sum, d) => sum + parseInt(d.สมาชิกพรรค), 0);
+    const totalArea = allData.reduce((sum, d) => sum + parseFloat(d.พื้นที่), 0);
+
+    document.getElementById("zone-name").textContent = "ข้อมูลรวมทั้งจังหวัด";
+    document.getElementById("pop").textContent = totalPop.toLocaleString();
+    document.getElementById("members").textContent = totalMem.toLocaleString();
+    document.getElementById("area").textContent = totalArea.toFixed(2);
+  }
+</script>
