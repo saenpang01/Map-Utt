@@ -1,6 +1,6 @@
-<div id="map-container" style="position: relative;">
+<div id="map-container" >
     <?xml version="1.0" encoding="UTF-8"?>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560" width="100%" height="auto" preserveAspectRatio="xMidYMid meet">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560" width="50%" height="auto" preserveAspectRatio="xMidYMid meet">
       <defs>
         <style>
           .cls-1 {
@@ -97,10 +97,24 @@
     </div>
   </div>
 <style>
+  
+.map-container {
+  position: relative;
+  overflow: hidden;
+  padding-top: 56.25%;
+  }
+.wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
 svg {
   max-width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
+  object-fit: contain;
 }
   svg path {
     transition: 0.3s;
@@ -109,12 +123,7 @@ svg {
   svg path:hover {
     fill: #ff9900;
   }
-  #map-container {
-    display: grid;
-    grid-template-columns: 7fr 3fr;
-    gap: 1rem;
-    align-items: flex-start;
-  }
+
   svg, object {
     width: 100%;
     height: auto;
@@ -122,22 +131,25 @@ svg {
   }
 
   .info-box {
-    background: #fff8ef;
-    border: 2px solid #ffa726;
-    border-radius: 12px;
-    padding: 16px;
-    font-family: "Kanit", sans-serif;
-    box-shadow: 0 4px 12px rgba(255, 167, 38, 0.2);
-    max-width: 100%;
-    box-sizing: border-box;
+    position: absolute;
+  bottom: 1vw;
+  left: 1vw;
+  background: #fff8ef;
+  border: 2px solid #ffa726;
+  border-radius: 1vw;
+  padding: 2vw;
+  font-family: "Kanit", sans-serif;
+  box-shadow: 0 4px 12px rgba(255, 167, 38, 0.2);
+  max-width: 90%;
+  font-size: 1.2vw; /* ขนาดพื้นฐานในหน่วย vw */
   }
 
 .info-box h2 {
   color: #fb8c00;
-  border-bottom: 2px solid #fb8c00;
-  padding-bottom: 4px;
-  margin-bottom: 12px;
-  font-size: 1.3em;
+  border-bottom: 0.5vw solid #fb8c00;
+  padding-bottom: 1vw;
+  margin-bottom: 2vw;
+  font-size: 1.6vw;
 }
 
 .info-box table {
@@ -146,8 +158,8 @@ svg {
 }
 
 .info-box td {
-  padding: 8px 4px;
-  font-size: 1em;
+  padding: 0.5vw 0.8vw;
+  font-size: 1.2vw;
   color: #424242;
 }
 
@@ -157,11 +169,12 @@ svg {
 }
 
 
-@media screen and (max-width: 768px) {
-  #map-container {
-    grid-template-columns: 1fr;
-  }
-}
+@media (max-width: 600px) {
+      .info-box {
+        font-size: 3vw;
+        padding: 0.25em 0.5em;
+      }
+    }
 </style>
 
 
